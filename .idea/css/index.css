@@ -1,0 +1,71 @@
+#calculatorBody {
+    background-color: #000000;
+    font-family: -apple-system, Helvetica;
+    margin: 0 auto;
+    width: 25vw;
+    padding: 5px;
+    border-radius: 2vw;
+}
+
+#answerContainer {
+    color: #ffffff;
+    text-align: right;
+    margin-right: 2vw;
+    font-size: 6vw;
+    padding: 0;
+    border: none;
+    max-height: 6.5vw;
+}
+
+.button0 {
+    text-align: left;
+    font-size: 2.5vw;
+    height: 5vw;
+    width: 11vw;
+    background-color: #282828;
+    color: white;
+    border-radius: 43%;
+    border: none;
+    margin: 0.5vw 0.5vw;
+    padding-left: 2vw;
+}
+
+.button {
+    text-align: center;
+    font-size: 2.5vw;
+    border: none;
+    color: white;
+    margin: 0.5vw 0.5vw;
+    border-radius: 50%;
+    height: 5vw;
+    width: 5vw;
+    background-color: #282828;
+    padding: 0px;
+
+}
+
+#buttonContainer {
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.operatorButton {
+    background-color: darkorange;
+    font-size: 3vw;
+}
+
+.settingsButton {
+    background-color: darkgray;
+    color: black;
+}
+
+.row {
+    margin: 0 auto;
+}
+
+
+
