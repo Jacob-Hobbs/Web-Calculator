@@ -28,6 +28,11 @@
     border: none;
     margin: 0.5vw 0.5vw;
     padding-left: 2vw;
+    transition-duration: 0.4s;
+}
+
+.button0:hover {
+    background-color: #656565;
 }
 
 .button {
@@ -41,7 +46,11 @@
     width: 5vw;
     background-color: #282828;
     padding: 0px;
+    transition-duration: 0.4s;
+}
 
+.button:hover {
+    background-color: #656565;
 }
 
 #buttonContainer {
@@ -56,6 +65,10 @@
 .operatorButton {
     background-color: darkorange;
     font-size: 3vw;
+}
+
+.operatorButton:hover {
+    background-color: #fdd2bc;
 }
 
 .settingsButton {

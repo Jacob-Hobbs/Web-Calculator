@@ -16,13 +16,13 @@
     </section>
     <section id="buttonContainer">
         <div id="firstRow" class="row">
-            <button class="button button1 settingsButton">AC</button>
+            <button class="button button1 settingsButton" onclick="clear()">AC</button>
             <button class="button button2 settingsButton">&plusmn;</button>
             <button class="button button3 settingsButton">&percnt;</button>
             <button class="button button4 operatorButton">&divide;</button>
         </div>
         <div id="secondRow" class="row" >
-            <button class="button button5">7</button>
+            <button class="button button5" onclick="displayNum('7')">7</button>
             <button class="button button6">8</button>
             <button class="button button7">9</button>
             <button class="button button8 operatorButton">&times;</button>
@@ -37,7 +37,7 @@
             <button class="button button13">1</button>
             <button class="button button14">2</button>
             <button class="button button15">3</button>
-            <button class="button button16 operatorButton">&plus;</button>
+            <button class="button button16 operatorButton" onclick="showPlus()">&plus;</button>
         </div>
         <div id="fifthRow" class="row">
             <button class="button0">0</button>
@@ -48,5 +48,7 @@
 </div>
 
 </body>
+
+<script src="../javascript/index.js"></script>
 
 </html>
