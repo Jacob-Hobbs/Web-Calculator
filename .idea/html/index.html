@@ -16,33 +16,33 @@
     </section>
     <section id="buttonContainer">
         <div id="firstRow" class="row">
-            <button class="button button1 settingsButton" onclick="clear()">AC</button>
+            <button class="button button1 settingsButton" onclick="allClear()">AC</button>
             <button class="button button2 settingsButton">&plusmn;</button>
             <button class="button button3 settingsButton">&percnt;</button>
-            <button class="button button4 operatorButton">&divide;</button>
+            <button class="button button4 operatorButton" onclick="setCurrentOperation('division')">&divide;</button>
         </div>
         <div id="secondRow" class="row" >
             <button class="button button5" onclick="displayNum('7')">7</button>
-            <button class="button button6">8</button>
-            <button class="button button7">9</button>
-            <button class="button button8 operatorButton">&times;</button>
+            <button class="button button6" onclick="displayNum('8')">8</button>
+            <button class="button button7" onclick="displayNum('9')">9</button>
+            <button class="button button8 operatorButton" onclick="setCurrentOperation('multiplication')">&times;</button>
         </div>
         <div id="thirdRow" class="row">
-            <button class="button button9">4</button>
-            <button class="button button10">5</button>
-            <button class="button button11">6</button>
-            <button class="button button12 operatorButton">&minus;</button>
+            <button class="button button9" onclick="displayNum('4')">4</button>
+            <button class="button button10" onclick="displayNum('5')">5</button>
+            <button class="button button11" onclick="displayNum('6')">6</button>
+            <button class="button button12 operatorButton" onclick="setCurrentOperation('subtraction')">&minus;</button>
         </div>
         <div id="fourthRow" class="row">
-            <button class="button button13">1</button>
-            <button class="button button14">2</button>
-            <button class="button button15">3</button>
-            <button class="button button16 operatorButton" onclick="showPlus()">&plus;</button>
+            <button class="button button13" onclick="displayNum('1')">1</button>
+            <button class="button button14" onclick="displayNum('2')">2</button>
+            <button class="button button15" onclick="displayNum('3')">3</button>
+            <button class="button button16 operatorButton" onclick="setCurrentOperation('addition')">&plus;</button>
         </div>
         <div id="fifthRow" class="row">
-            <button class="button0">0</button>
+            <button class="button0" onclick="displayNum('0')">0</button>
             <button class="button button17">.</button>
-            <button class="button button18 operatorButton">=</button>
+            <button class="button button18 operatorButton" onclick="displayAnswer()">=</button>
         </div>
     </section>
 </div>
