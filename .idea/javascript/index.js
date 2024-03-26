@@ -9,50 +9,64 @@ let currentOperation = "undefined";
 function displayAnswer() {
     console.log("firstNum: " + firstNum);
     console.log("secondNum: " + secondNum);
-    console.log("operationButtonPressed: " + operationButtonPressed)
     if (firstNumPressed === true && operationButtonPressed === true) {
         if (currentOperation === "addition") {
             document.getElementById("answer").textContent = add(firstNum, secondNum);
-            firstNumPressed = false;
-            operationButtonPressed = false;
+            firstNumPressed = !firstNumPressed;
+            operationButtonPressed = !operationButtonPressed;
             console.log("STEP TWO!");
         } else if (currentOperation === "subtraction") {
             document.getElementById("answer").textContent = subtract(firstNum, secondNum);
-            firstNumPressed = false;
-            operationButtonPressed = false;
+            firstNumPressed = !firstNumPressed;
+            operationButtonPressed = !operationButtonPressed;
         } else if (currentOperation === "division") {
             document.getElementById("answer").textContent = divide(firstNum, secondNum);
-            firstNumPressed = false;
-            operationButtonPressed = false;
+            firstNumPressed = !firstNumPressed;
+            operationButtonPressed = !operationButtonPressed;
         } else if (currentOperation === "multiplication") {
             document.getElementById("answer").textContent = multiply(firstNum, secondNum);
-            firstNumPressed = false;
-            operationButtonPressed = false;
+            firstNumPressed = !firstNumPressed;
+            operationButtonPressed = !operationButtonPressed;
         } else {
             console.log("Invalid operation expressed in function displayAnswer(x, op).")
         }
     }
+
 }
 
 function setCurrentOperation(op) {
-    currentOperation = op;
-    operationButtonPressed = !operationButtonPressed;
-    console.log(op)
+    if (firstNumPressed === true) {
+        currentOperation = op;
+        operationButtonPressed = !operationButtonPressed;
+        console.log(op)
+    }
 }
 
-
 function displayNum(x) {
-    console.log("firstNumPressed: " + firstNumPressed);
-    console.log("operationButtonPressed: " + operationButtonPressed);
+    // conditions for second number of operation
     if (firstNumPressed === true && operationButtonPressed === true) {
-        secondNum = x;
-        console.log("secondNum: " + secondNum);
+        secondNum = Number(x);
+        document.getElementById("answer").textContent = secondNumNum;
+    // conditions for first number of operation
     } else {
-        firstNum = x;
-        firstNumPressed = !firstNumPressed;
-        console.log("firstNum: " + firstNum);
+        // TODO: will need to change this when implementing decimals
+        console.log("firstNumPressed: " + firstNumPressed)
+        if (firstNumPressed === true) {
+            firstNum = Number(firstNum + x);
+            document.getElementById("answer").textContent = firstNum;
+        } else {
+            firstNum = Number(x);
+            firstNumPressed = !firstNumPressed;
+            document.getElementById("answer").textContent = firstNum;
+        }
     }
-    document.getElementById("answer").textContent = x;
+}
+
+function percent() {
+    let enteredNum = Number(firstNum);
+    enteredNum = enteredNum * 0.01;
+    firstNum = Number(enteredNum);
+    document.getElementById("answer").textContent = enteredNum.toString();
 }
 
 
@@ -64,6 +78,15 @@ function allClear() {
     firstNum = 0;
     secondNum = 0;
     total = 0;
+}
+
+function negPos() {
+    if (Number(firstNum) >= 0) {
+        firstNum = Number(firstNum * -1);
+    } else {
+        firstNum = Math.abs(Number(firstNum));
+    }
+    document.getElementById("answer").textContent = firstNum;
 }
 
 // Functions for basic arithmetic of calculator

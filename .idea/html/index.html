@@ -17,8 +17,8 @@
     <section id="buttonContainer">
         <div id="firstRow" class="row">
             <button class="button button1 settingsButton" onclick="allClear()">AC</button>
-            <button class="button button2 settingsButton">&plusmn;</button>
-            <button class="button button3 settingsButton">&percnt;</button>
+            <button class="button button2 settingsButton" onclick="negPos()">&plusmn;</button>
+            <button class="button button3 settingsButton" onclick="percent()">&percnt;</button>
             <button class="button button4 operatorButton" onclick="setCurrentOperation('division')">&divide;</button>
         </div>
         <div id="secondRow" class="row" >
@@ -41,7 +41,7 @@
         </div>
         <div id="fifthRow" class="row">
             <button class="button0" onclick="displayNum('0')">0</button>
-            <button class="button button17">.</button>
+            <button class="button button17" >.</button>
             <button class="button button18 operatorButton" onclick="displayAnswer()">=</button>
         </div>
     </section>
