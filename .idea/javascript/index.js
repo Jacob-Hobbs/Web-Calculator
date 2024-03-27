@@ -4,33 +4,70 @@ let secondNum = 0;
 let firstNumPressed = false;
 let secondNumPressed = false;
 let operationButtonPressed = false;
+let decimalButtonPressed = false;
 let currentOperation = "undefined";
+
+// This function will be used by the . button to place a decimal in the number
+function placeDecimal() {
+    // if no number is entered for firstNum
+    if (firstNumPressed === false) {
+        console.log("CONDITION 1");
+        firstNum = firstNum + ".";
+        document.getElementById("answer").textContent = firstNum;
+        firstNumPressed = !firstNumPressed;
+        decimalButtonPressed = !decimalButtonPressed;
+    // if a number has been entered for firstNum
+    } else if (firstNumPressed === true && secondNumPressed === false
+            && decimalButtonPressed === false && operationButtonPressed === false) {
+        console.log("CONDITION 2");
+        firstNum = firstNum + ".";
+        document.getElementById("answer").textContent = firstNum;
+        decimalButtonPressed = !decimalButtonPressed;
+    // if no number has been entered for secondNum
+    } else if (firstNumPressed === true && operationButtonPressed === true
+            && decimalButtonPressed === false && secondNumPressed === false) {
+        console.log("CONDITION 3");
+        secondNum = secondNum + ".";
+        document.getElementById("answer").textContent = secondNum;
+        decimalButtonPressed = !decimalButtonPressed;
+        secondNumPressed = !secondNumPressed;
+    // if a number has been entered for secondNum
+    } else if (firstNumPressed === true && operationButtonPressed === true
+        && decimalButtonPressed === false && secondNumPressed === true) {
+        console.log("CONDITION 4");
+        secondNum = secondNum + ".";
+        document.getElementById("answer").textContent = secondNum;
+        decimalButtonPressed = !decimalButtonPressed;
+    }
+}
 
 // This will be used by the = button to display the answer
 function displayAnswer() {
-    console.log("firstNum: " + firstNum);
-    console.log("secondNum: " + secondNum);
     if (firstNumPressed === true && operationButtonPressed === true) {
         if (currentOperation === "addition") {
             document.getElementById("answer").textContent = add(firstNum, secondNum);
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
         } else if (currentOperation === "subtraction") {
             document.getElementById("answer").textContent = subtract(firstNum, secondNum);
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
         } else if (currentOperation === "division") {
             document.getElementById("answer").textContent = divide(firstNum, secondNum);
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
         } else if (currentOperation === "multiplication") {
             document.getElementById("answer").textContent = multiply(firstNum, secondNum);
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
         } else {
             console.log("Invalid operation expressed in function displayAnswer(x, op).")
         }
@@ -42,6 +79,9 @@ function setCurrentOperation(op) {
     if (firstNumPressed === true) {
         currentOperation = op;
         operationButtonPressed = !operationButtonPressed;
+        if (decimalButtonPressed === true) {
+            decimalButtonPressed = !decimalButtonPressed;
+        }
         console.log(op)
     }
 }
@@ -72,11 +112,11 @@ function displayNum(x) {
             document.getElementById("answer").textContent = firstNum;
         }
     }
+    console.log("firstNum: " + firstNum);
+    console.log("secondNum: " + secondNum);
 }
 
 function percent() {
-    console.log("firstNum: " + firstNum);
-    console.log("secondNum: " + secondNum);
     if (firstNumPressed === true && secondNumPressed === false) {
         let enteredNum = Number(firstNum) * 0.01;
         firstNum = Number(enteredNum);
@@ -88,7 +128,6 @@ function percent() {
     }
 }
 
-
 function allClear() {
     document.getElementById("answer").textContent = "0";
     if (firstNumPressed === true) {
@@ -99,6 +138,9 @@ function allClear() {
     }
     if (operationButtonPressed === true) {
         operationButtonPressed = !operationButtonPressed;
+    }
+    if (decimalButtonPressed === true) {
+        decimalButtonPressed = !decimalButtonPressed;
     }
     currentOperation = "undefined";
     firstNum = 0;
