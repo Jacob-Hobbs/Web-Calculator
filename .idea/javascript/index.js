@@ -85,7 +85,7 @@ function setCurrentOperation(op) {
         console.log(op)
     }
 }
-// TODO: will need to change this when implementing decimals
+
 function displayNum(x) {
     // conditions for second number of operation
     if (firstNumPressed === true && operationButtonPressed === true) {
