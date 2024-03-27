@@ -1,6 +1,7 @@
 let total = 0;
 let firstNum = 0;
 let secondNum = 0;
+let operationButtonCount = 0;
 let firstNumPressed = false;
 let secondNumPressed = false;
 let operationButtonPressed = false;
@@ -43,29 +44,61 @@ function placeDecimal() {
 
 // This will be used by the = button to display the answer
 function displayAnswer() {
-    if (firstNumPressed === true && operationButtonPressed === true) {
+    if (firstNumPressed === true && operationButtonPressed === true
+            && operationButtonCount === 0) {
         if (currentOperation === "addition") {
-            document.getElementById("answer").textContent = add(firstNum, secondNum);
+            total = add(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
             decimalButtonPressed = !decimalButtonPressed;
         } else if (currentOperation === "subtraction") {
-            document.getElementById("answer").textContent = subtract(firstNum, secondNum);
+            total = subtract(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
             decimalButtonPressed = !decimalButtonPressed;
         } else if (currentOperation === "division") {
-            document.getElementById("answer").textContent = divide(firstNum, secondNum);
+            total = divide(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
             decimalButtonPressed = !decimalButtonPressed;
         } else if (currentOperation === "multiplication") {
-            document.getElementById("answer").textContent = multiply(firstNum, secondNum);
+            total = multiply(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
+            secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
+        } else {
+            console.log("Invalid operation expressed in function displayAnswer(x, op).")
+        }
+
+    } else if ((firstNumPressed === true && operationButtonPressed === true
+        && operationButtonCount > 0)) {
+        console.log("I SEE YOU!");
+        if (currentOperation === "addition") {
+            total = add(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
+            secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
+        } else if (currentOperation === "subtraction") {
+            total = subtract(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
+            secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
+        } else if (currentOperation === "division") {
+            total = divide(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
+            secondNumPressed = !secondNumPressed;
+            decimalButtonPressed = !decimalButtonPressed;
+        } else if (currentOperation === "multiplication") {
+            total = multiply(firstNum, secondNum);
+            document.getElementById("answer").textContent = total;
             secondNumPressed = !secondNumPressed;
             decimalButtonPressed = !decimalButtonPressed;
         } else {
@@ -76,19 +109,49 @@ function displayAnswer() {
 }
 
 function setCurrentOperation(op) {
-    if (firstNumPressed === true) {
+    if (operationButtonPressed === true && firstNumPressed === true
+            && secondNumPressed === true) {
+        // this is where the numbers need to be added
+        displayAnswer();
+
+        firstNum = Number(total);
+        secondNumPressed = !secondNumPressed;
+        //operationButtonPressed = !operationButtonPressed;
+
+        operationButtonCount++;
+        currentOperation = op;
+        if (decimalButtonPressed === true) {
+            decimalButtonPressed = !decimalButtonPressed;
+        }
+        console.log(op)
+        console.log("operationButtonPressed:" + operationButtonPressed)
+    } else if (firstNumPressed === true && operationButtonCount === 0) {
+        operationButtonCount++;
         currentOperation = op;
         operationButtonPressed = !operationButtonPressed;
         if (decimalButtonPressed === true) {
             decimalButtonPressed = !decimalButtonPressed;
         }
         console.log(op)
+        console.log("operationButtonPressed:" + operationButtonPressed)
     }
 }
 
 function displayNum(x) {
     // conditions for second number of operation
+    console.log("secondNumPressed: " + secondNumPressed);
+    console.log("operationButtonPressed: " + operationButtonCount)
     if (firstNumPressed === true && operationButtonPressed === true) {
+
+        if (secondNumPressed === true && operationButtonCount > 1) {
+            // FIXME: decimals not working with third number onward.
+            console.log("HELLO!");
+            secondNum = Number(x);
+            secondNumPressed = !secondNumPressed;
+            document.getElementById("answer").textContent = secondNum;
+
+
+        }
         // if the second number already has a ones digit.
         if (secondNumPressed === true) {
             secondNum = Number(secondNum + x);
@@ -146,6 +209,7 @@ function allClear() {
     firstNum = 0;
     secondNum = 0;
     total = 0;
+    operationButtonCount = 0;
 }
 
 function negPos() {
