@@ -36,7 +36,7 @@ function placeDecimal() {
     } else if (firstNumPressed === true && operationButtonPressed === true
         && decimalButtonPressed === false && secondNumPressed === true) {
         console.log("CONDITION 4");
-        secondNum = secondNum + ".";
+        secondNum = 0 + ".";
         document.getElementById("answer").textContent = secondNum;
         decimalButtonPressed = !decimalButtonPressed;
     }
@@ -52,28 +52,36 @@ function displayAnswer() {
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else if (currentOperation === "subtraction") {
             total = subtract(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else if (currentOperation === "division") {
             total = divide(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else if (currentOperation === "multiplication") {
             total = multiply(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             firstNumPressed = !firstNumPressed;
             operationButtonPressed = !operationButtonPressed;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else {
             console.log("Invalid operation expressed in function displayAnswer(x, op).")
         }
@@ -85,22 +93,30 @@ function displayAnswer() {
             total = add(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else if (currentOperation === "subtraction") {
             total = subtract(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else if (currentOperation === "division") {
             total = divide(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else if (currentOperation === "multiplication") {
             total = multiply(firstNum, secondNum);
             document.getElementById("answer").textContent = total;
             secondNumPressed = !secondNumPressed;
-            decimalButtonPressed = !decimalButtonPressed;
+            if (decimalButtonPressed === true) {
+                decimalButtonPressed = !decimalButtonPressed;
+            }
         } else {
             console.log("Invalid operation expressed in function displayAnswer(x, op).")
         }
@@ -120,9 +136,9 @@ function setCurrentOperation(op) {
 
         operationButtonCount++;
         currentOperation = op;
-        if (decimalButtonPressed === true) {
-            decimalButtonPressed = !decimalButtonPressed;
-        }
+        //if (decimalButtonPressed === true) {
+            //decimalButtonPressed = !decimalButtonPressed;
+        //}
         console.log(op)
         console.log("operationButtonPressed:" + operationButtonPressed)
     } else if (firstNumPressed === true && operationButtonCount === 0) {
@@ -146,14 +162,24 @@ function displayNum(x) {
         if (secondNumPressed === true && operationButtonCount > 1) {
             // FIXME: decimals not working with third number onward.
             console.log("HELLO!");
-            secondNum = Number(x);
-            secondNumPressed = !secondNumPressed;
-            document.getElementById("answer").textContent = secondNum;
+            // TODO: Implement nested logic for secondNum assignment for decimals
+
+            if (decimalButtonPressed === true) {
+                secondNum = secondNum + x;
+                console.log("Nested secondNum: " + secondNum)
+                document.getElementById("answer").textContent = secondNum;
+            } else {
+                secondNum = Number(x);
+                secondNumPressed = !secondNumPressed;
+                document.getElementById("answer").textContent = secondNum;
+            }
+
+            //secondNum = Number(x);
+            //secondNumPressed = !secondNumPressed;
+            //document.getElementById("answer").textContent = secondNum;
 
 
-        }
-        // if the second number already has a ones digit.
-        if (secondNumPressed === true) {
+        } else if (secondNumPressed === true) {
             secondNum = Number(secondNum + x);
             document.getElementById("answer").textContent = secondNum;
         // else mark x as the second number's ones digit.
