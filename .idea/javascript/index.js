@@ -272,3 +272,7 @@ function subtract(x, y) {
 function divide(x, y) {
     return Number(x) / Number(y);
 }
+
+
+
+module.exports = { add: add, subtract: subtract};
